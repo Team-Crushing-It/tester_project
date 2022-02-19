@@ -1,6 +1,22 @@
 part of 'stream_bloc.dart';
 
-@immutable
-abstract class StreamState {}
+class StreamState extends Equatable {
+  const StreamState._({required this.integers});
 
-class StreamInitial extends StreamState {}
+  StreamState.initialized() : this._(integers: []);
+
+  const StreamState.updated(List<int> integers) : this._(integers: integers);
+
+  final List<int>? integers;
+
+  @override
+  List<Object?> get props => [integers];
+
+  StreamState copyWith({
+    List<int>? integers,
+  }) {
+    return StreamState._(
+      integers: integers ?? this.integers,
+    );
+  }
+}

@@ -21,6 +21,17 @@ class StreamView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('something');
+    return BlocBuilder<StreamBloc, StreamState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: Center(
+            child: Text(
+              state.integers!.first.toString(),
+              style: const TextStyle(fontSize: 24),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

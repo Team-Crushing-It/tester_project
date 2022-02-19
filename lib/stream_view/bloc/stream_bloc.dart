@@ -9,16 +9,15 @@ part 'stream_state.dart';
 class StreamBloc extends Bloc<StreamEvent, StreamState> {
   StreamBloc({required TestRepository testRepository})
       : _testRepository = testRepository,
-        super(StreamInitial()) {
+        super(StreamState.initialized()) {
     _testRepository.getData().listen(
       (event) {
-        for (final element in event) {
-          print(element);
-        }
+        add(StreamChanged(event));
       },
     );
-    on<StreamEvent>((event, emit) {
-      // TODO: implement event handler
+
+    on<StreamChanged>((event, emit) {
+      emit(state.copyWith(integers: event.integers));
     });
   }
 
