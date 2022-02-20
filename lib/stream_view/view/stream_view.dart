@@ -10,7 +10,8 @@ class StreamViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       lazy: false,
-      create: (_) => StreamBloc(testRepository: context.read<TestRepository>()),
+      create: (_) => StreamBloc(testRepository: context.read<TestRepository>())
+        ..add(StreamSubscriptionRequested()),
       child: const StreamView(),
     );
   }

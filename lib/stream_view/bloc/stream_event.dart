@@ -15,3 +15,5 @@ class StreamChanged extends StreamEvent {
   @override
   List<Object> get props => [integers];
 }
+
+class StreamSubscriptionRequested extends StreamEvent {}
